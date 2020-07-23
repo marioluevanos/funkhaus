@@ -16,21 +16,26 @@ export default {
     components: {
         EditorsList
     },
-    async asyncData() {
+    async fetch() {
         try {
             const url = 'https://raw.githubusercontent.com/funkhaus/technical-assessment/master/db.json'
             const response = await fetch(url)
             if (response.ok) {
-                return await response.json()
+                this.db = await response.json()
             }
         } catch (error) {
             console.log(error)
         }
     },
+    data() {
+        return {
+            db: {}
+        }
+    },
     computed: {
         editors() {
             // Map an editors list
-            return this.pages
+            return this.db.pages
                 .map(p => {
                     return {
                         id: p.id,
@@ -42,7 +47,7 @@ export default {
                 .sort((first, second) => (first.title > second.title) ? 1 : -1)
         },
         pageTitle() {
-            return this.page.title
+            return this.db.page.title
         }
     },
     head () {
@@ -50,7 +55,7 @@ export default {
             title, 
             description,
             thumbnail
-        } = this.siteMeta
+        } = this.db.siteMeta
 
         return {
             title,
