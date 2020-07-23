@@ -1,0 +1,23 @@
+// Breakpoints
+// -----------------------------------------
+$breakpoint-mobile: 767px;
+$breakpoint-tablet: 1023px;
+
+@mixin bp($point, $size: max-width) {
+    @if $point=='mobile' {
+        @media screen and($size: $breakpoint-mobile) {
+            @content;
+        }
+    }
+    @else if $point=='tablet' {
+        @media screen and($size: $breakpoint-tablet) {
+            @content;
+        }
+    }
+}
+
+@mixin hover() {
+    @media (hover: hover) {
+        @content;
+    }
+}
