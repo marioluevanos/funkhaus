@@ -8,6 +8,8 @@ export const mutations = {
     }
 }
 
-export const getters = {}
+export const getters = {
+    isMenuActive: state => state.isMenuActive
+}
 
 export const actions = {}

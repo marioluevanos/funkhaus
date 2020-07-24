@@ -3,11 +3,7 @@
         <nav class="default-navigation">
             <app-logo />
             <span class="default-nav-aside">
-                <img
-                    class="logo-rps"
-                    src="@/assets/logo-rps.svg" 
-                    alt="Logo RPS"
-                >
+                <app-rps />
                 <app-hamburger />
             </span>
         </nav>
@@ -18,12 +14,14 @@
 <script>
 // Components
 import AppLogo from '@/components/AppLogo.vue'
+import AppRps from '@/components/AppRps.vue'
 import AppHamburger from '@/components/AppHamburger.vue'
 
 export default {
     name: 'DefaultLayout',
     components: {
         AppLogo,
+        AppRps,
         AppHamburger
     }
 }
@@ -44,23 +42,6 @@ export default {
 .default-nav-aside {
     display: flex;
     align-items: center;
-}
-
-.logo-rps {
-    display: block;
-    width: 150px;
-    height: inherit;
-    margin-right: 30px;
-}
-
-// Breakpoints 
-// -----------------------------------------
-
-@media #{$lt-phone} {
-    .logo-rps {
-        width: 75px;
-        margin-right: 15px;
-    }
 }
 
 </style>

@@ -45,6 +45,7 @@ export default {
     transition: all 0.15s var(--ease-in-out-sine);
     position: relative;
     z-index: 500;
+    user-select: none;
     rect {
         transition: inherit;    
     }

@@ -55,8 +55,7 @@ export default {
         timeRemaining() {
             return this.time.limit - this.time.passed
         },
-        // This is truthy, when moused over the <p> element, or name
-        // Use CSS to change properties
+        // This is truthy, when moused over the <p> element 
         isVisible() {
             return { 'is-visible': this.isHovered }
         },
@@ -71,13 +70,12 @@ export default {
         shouldPlay({ id })  {
             // When hovered, the component received an ID and is checked
             if (id && this.id === id) {
-
-                console.log('starting', id, this.id)
                 this.timeStart()
             } else {
                 this.timeEnd()
             }
         },
+        // Resetting the slide show when not-hovering
         isHovered(hovered) {
             if (!hovered) this.activeIndex = 0
         }
@@ -89,7 +87,8 @@ export default {
         },
         timeEnd() {
             clearInterval(this.time.intervalId)
-            
+
+            // After the time has ended, check if mouse is still hovering to continue
             if (this.isHovered) {
                 this.timeNext()
             } else {
@@ -160,6 +159,16 @@ export default {
 .slide-show-img.active {
     opacity: 0.85;
     --transition-delay: var(--transition-dur);
+}
+
+
+// Breakpoints 
+// -----------------------------------------
+
+@media #{$lt-phone} {
+    .slide-show {
+        min-height: 200px;
+    }   
 }
 
 </style>
