@@ -34,27 +34,44 @@ export default {
     },
     computed: {
         editors() {
-            // Map an editors list
+            // Map editors list, that is unique
             return this.db.pages
                 .map(p => {
                     return {
                         id: p.id,
                         title: p.title,
-                        image: p.featuredImage
+                        // Remove the duplicate objects based on a property
+                        images: this.removeDuplicates([p.featuredImage, ...this.filterImages], 'mediaItemId')
                     }
                 })
                 // Sort alphabetically [A-Z]
                 .sort((first, second) => (first.title > second.title) ? 1 : -1)
         },
+        // Remove if image is falsy
+        filterImages() {
+            return this.db.images.filter(img => img.sourceUrl).reverse()
+        },
         pageTitle() {
             return this.db.page.title
         }
     },
+    methods: {
+        removeDuplicates(arr, property) {
+            return arr
+                // store the comparison values in array
+                .map(e => e[property])
+                // store the indexes of the unique objects
+                .map((e, i, all) => all.indexOf(e) === i && i)
+                // eliminate the false indexes & return unique objects
+                .filter(e => arr[e])
+                .map(e => arr[e])
+        }
+    },
     head () {
         const { 
-            title, 
-            description,
-            thumbnail
+            title = '', 
+            description = '',
+            thumbnail = ''
         } = this.db.siteMeta
 
         return {
@@ -70,16 +87,15 @@ export default {
                 { property: 'og:type', content: 'website' },
             ]
         }
-    },
+    }
 }
 </script>
 
 <style lang='scss' scoped>
 
 .page-index {
-    --vertical-space: 160px;
+    --vertical-space: 120px;
     margin-top: var(--vertical-space);
-    margin-bottom: var(--vertical-space);
     padding-left: var(--gutter-sides);
     padding-right: var(--gutter-sides);
 }
@@ -99,7 +115,7 @@ export default {
 // Breakpoints 
 // -----------------------------------------
 
-@include bp(mobile) {
+@media #{$lt-phone} {
     .page-index {
         --vertical-space: 90px;
         margin-top: 0;

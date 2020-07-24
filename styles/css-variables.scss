@@ -1,0 +1,24 @@
+:root {
+    // Colors
+    // -----------------------------------------
+    --color-bg: #000;
+    --color-primary: #FDC760;
+
+    // Fonts
+    // -----------------------------------------
+    --font-primary: RMNeue;
+
+    // Gutter
+    // -----------------------------------------
+    --gutter-sides: 50px;
+    --gutter-top: 30px;
+
+    // Easings
+    // -----------------------------------------
+    --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+    // Media Queries
+    @media #{$lt-phone} {
+        --gutter-sides: 15px;
+    }
+}

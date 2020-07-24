@@ -8,7 +8,7 @@
                     src="@/assets/logo-rps.svg" 
                     alt="Logo RPS"
                 >
-                <app-menu-icon />
+                <app-hamburger />
             </span>
         </nav>
         <Nuxt />
@@ -18,13 +18,13 @@
 <script>
 // Components
 import AppLogo from '@/components/AppLogo.vue'
-import AppMenuIcon from '@/components/AppMenuIcon.vue'
+import AppHamburger from '@/components/AppHamburger.vue'
 
 export default {
     name: 'DefaultLayout',
     components: {
         AppLogo,
-        AppMenuIcon
+        AppHamburger
     }
 }
 </script>
@@ -39,8 +39,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-    z-index: 10;
 }
 
 .default-nav-aside {
@@ -58,7 +56,7 @@ export default {
 // Breakpoints 
 // -----------------------------------------
 
-@include bp(mobile) {
+@media #{$lt-phone} {
     .logo-rps {
         width: 75px;
         margin-right: 15px;

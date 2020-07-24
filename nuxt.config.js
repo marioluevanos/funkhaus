@@ -30,13 +30,14 @@ export default {
   */
   css: [
     "~/styles/global.scss",
-    "~/styles/fonts.scss"
+    "~/styles/fonts.scss",
+    "~/styles/css-variables.scss"
   ],
   /*
  ** Load SCSS into each component
  */
   styleResources: {
-    scss: ["~/styles/variables.scss", "~/styles/mixins.scss"]
+    scss: ["~/styles/variables.scss"]
   },
   /*
   ** Plugins to load before mounting the App

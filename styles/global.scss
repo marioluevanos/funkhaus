@@ -1,22 +1,9 @@
-:root {
-    // Colors
-    // -----------------------------------------
-    --color-bg: #000;
-    --color-primary: #FDC760;
-
-    // Fonts
-    // -----------------------------------------
-    --font-primary: RMNeue;
-
-    // Gutter
-    // -----------------------------------------
-    --gutter-sides: 50px;
-    --gutter-top: 30px;
-
-
-    @include bp(mobile) {
-        --gutter-sides: 15px;
-    }
+html {
+	height: 100%;
+	font-family: sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -24,6 +11,17 @@ body {
     background: var(--color-bg);
     color: var(--color-primary);
     @extend .font-regular;
+
+    // Change the selection color
+    ::selection {
+        color: var(--color-bg);
+        background: var(--color-primary);
+    }
+
+    ::-moz-selection {
+        color: var(--color-bg);
+        background: var(--color-primary);
+    }
 }
 
 // Global Styles for Typography
@@ -34,7 +32,7 @@ body {
     font: normal 18px/22px var(--font-primary);
 }
 
-@include bp(tablet) {
+@media #{$lt-tablet} {
     .font-regular {
         font-size: 14px;
         line-height: 18px;        
@@ -46,7 +44,7 @@ body {
     font: normal 24px/37px var(--font-primary);
 }
 
-@include bp(tablet) {
+@media #{$lt-tablet} {
     .font-large {
         font-size: 18px;
         line-height: 24px;        

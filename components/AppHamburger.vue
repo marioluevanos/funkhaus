@@ -1,6 +1,6 @@
 <template>
     <svg 
-        class="app-menu-icon"
+        class="app-hamburger"
         width="32"
         height="32"
         viewBox="0 0 32 32"
@@ -23,41 +23,46 @@
 
 <script>
 export default {
-    name: 'AppMenuIcon',
+    name: 'AppHamburger',
     methods: {
         onClickIcon() {
+            // Another way to toggle the class would be the Vue way, but I felt that was too much
             this.$el.classList.toggle('is-active')
+            
+            // Toggle the menu open or close
             this.$store.commit('SET_IS_MENU_ACTIVE')
         }
-    }
+    },
 }
 </script>
 
 <style lang='scss' scoped>
 
-.app-menu-icon { 
+.app-hamburger { 
     fill: var(--color-primary);
     overflow: visible;
     cursor: pointer;
-    transition: all 0.15s $ease-in-out-sine;
+    transition: all 0.15s var(--ease-in-out-sine);
+    position: relative;
+    z-index: 500;
     rect {
         transition: inherit;    
     }
 }
 
 // Hover State
-.app-menu-icon:hover {
+.app-hamburger:hover {
     fill: white;
 }
 
 // Active State
-.app-menu-icon.is-active {
+.app-hamburger.is-active {
     rect:nth-child(1) {
-        transform-origin: 11px 14px; // Finding the sweet spot for the rotation
+        transform-origin: 11px 14px; // Finding the sweet spot for the rotation, to account for x, y and height.
         transform: rotate(45deg);
     }
     rect:nth-child(2) {
-        transform-origin: 9px 17px; // Finding the sweet spot for the rotation
+        transform-origin: 9px 17px; // Same here.
         transform: rotate(-45deg);
     }
 }

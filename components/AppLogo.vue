@@ -29,7 +29,7 @@ export default {
 // Breakpoints 
 // -----------------------------------------
 
-@include bp(mobile) {
+@media #{$lt-phone} {
     .app-logo {
         width: 120px;
     }
