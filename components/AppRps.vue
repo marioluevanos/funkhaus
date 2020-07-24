@@ -62,7 +62,8 @@ export default {
     name: 'AppRps',
     data() {
         return {
-            rpsWinner: ''
+            rpsWinner: '',
+            colorPrimary: ''
         }
     },
     computed: {
@@ -72,10 +73,35 @@ export default {
     },
     watch: {
         isMenuActive(isActive) {
-            this.rpsWinner = isActive ? this.randomClass() : ''
+            this.setNewWinner(isActive)
+            this.chageColorTheme(isActive)
         }
     },
+    mounted() {
+        // store the original color
+        this.colorPrimary = getComputedStyle(document.documentElement).getPropertyValue('--color-primary')
+    },
     methods: {
+        chageColorTheme(isActive) {
+            const color = isActive ? this.getNewColor(this.rpsWinner) : this.getNewColor()
+            document.documentElement.style.setProperty('--color-primary', color)
+        },
+        setNewWinner(isActive) {
+            this.rpsWinner = isActive ? this.randomClass() : ''
+        },
+        getNewColor(color) {
+            const colorVar = c => `var(--color-${c})`
+            switch (color) {
+                case 'rock':
+                    return colorVar('blue')
+                case 'paper':
+                    return colorVar('yellow')
+                case 'scissors':
+                    return colorVar('red')
+                default:
+                    return this.colorPrimary
+            }
+        },
         randomClass() {
             const possibilities = ['rock', 'paper', 'scissors']
             const random = Math.trunc(Math.random() * possibilities.length)
@@ -96,59 +122,45 @@ export default {
     transform-origin: center right;
 }
 
-.rps-box .bg {
-    transform: translate3d(0, 0, 0);
-    clip-path: inset(0 0 0 0);
-    transition: all 0.3s var(--ease-in-out-sine);
-    transform-origin: center;
+.rps-box {
+    transition: opacity 0.3s var(--ease-in-out-sine);
 }
-
-// Local Colors
-// -----------------------------------------
 
 .color-blue {
-    fill:#3296B8;
+    fill: var(--color-blue);
 }
 .color-white {
-    fill:#FFFFFF;
+    fill: var(--color-white);
 }
 .color-yellow {
-    fill:#FEC658;
+    fill: var(--color-yellow);
 }
 .color-red {
-    fill:#CE1141;
+    fill: var(--color-red);
 }
 
 // Winning State 
 // -----------------------------------------
 
-.app-rps[data-winner] .bg {
-    fill: var(--color-bg);
+.app-rps[data-winner='rock'] .rps-box:not(.rock) {
+    opacity: 0;
 }
 
-.app-rps[data-winner='rock'] .rock .bg {
-    @extend .color-blue;
+.app-rps[data-winner='paper'] .rps-box:not(.paper) {
+    opacity: 0;
 }
 
-.app-rps[data-winner='paper'] .paper .bg {
-    @extend .color-yellow;
+.app-rps[data-winner='scissors'] .rps-box:not(.scissors) {
+    opacity: 0;
 }
 
-.app-rps[data-winner='scissors'] .scissors .bg {
-    @extend .color-red;
-}
 
 // Breakpoints 
 // -----------------------------------------
 
 @media #{$lt-phone} {
-
     .app-rps {
         transform: scale(0.75);
-    }
-    .logo-rps {
-        width: 75px;
-        margin-right: 15px;
     }
 }
 

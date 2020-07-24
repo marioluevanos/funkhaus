@@ -68,15 +68,15 @@ export default {
             this.shouldPlay = false
             this.toggleVisibility()
         },
-        toggleVisibility(bool) {
-            if (bool) {
-                this.toggleClasses('add')
+        toggleVisibility(mouseEntered) {
+            if (mouseEntered) {
+                this.setActiveClass('add')
             } else {
-                this.toggleClasses('remove')
+                this.setActiveClass('remove')
             }
         },
-        // Probably a better way to toggle the classes, on all the children
-        toggleClasses(methodName) {
+        // Probably a better way to toggle classes, on all the children
+        setActiveClass(methodName) {
             Array.from(this.$el.children).forEach(li => li.firstElementChild.classList[methodName]('active'))
         },
         staggerProp(idx = 0) {
@@ -111,10 +111,6 @@ export default {
     transition: all 0.3s var(--ease-in-out-sine);
     z-index: 10;
 }
-
-// States
-// -----------------------------------------
-
 
 // Breakpoints 
 // -----------------------------------------

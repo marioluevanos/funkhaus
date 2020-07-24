@@ -1,12 +1,12 @@
 <template>
     <main class="default-layout">
-        <nav class="default-navigation">
+        <header class="default-header">
             <app-logo />
-            <span class="default-nav-aside">
+            <aside class="default-aside">
                 <app-rps />
                 <app-hamburger />
-            </span>
-        </nav>
+            </aside>
+        </header>
         <Nuxt />
     </main>
 </template>
@@ -29,7 +29,7 @@ export default {
 
 <style lang='scss' scoped>
 
-.default-navigation {
+.default-header {
     height: 50px;
     margin-top: var(--gutter-top);
     padding-right: var(--gutter-sides);
@@ -39,7 +39,7 @@ export default {
     justify-content: space-between;
 }
 
-.default-nav-aside {
+.default-aside {
     display: flex;
     align-items: center;
 }

@@ -8,18 +8,18 @@ html {
 
 body {
     margin: 0;
-    background: var(--color-bg);
+    background: var(--color-black);
     color: var(--color-primary);
     @extend .font-regular;
 
     // Change the selection color
     ::selection {
-        color: var(--color-bg);
+        color: var(--color-black);
         background: var(--color-primary);
     }
 
     ::-moz-selection {
-        color: var(--color-bg);
+        color: var(--color-black);
         background: var(--color-primary);
     }
 }

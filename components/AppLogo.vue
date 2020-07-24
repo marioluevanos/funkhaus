@@ -24,6 +24,7 @@ export default {
     fill: var(--color-primary);
     width: 150px;
     height: auto;
+    transition: fill 0.3s var(--ease-in-out-sine);
 }
 
 // Breakpoints 

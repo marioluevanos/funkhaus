@@ -99,6 +99,7 @@ export default {
     font-size: 18px;
     line-height: 22px;
     margin: 0;
+    transition: color 0.3s var(--ease-in-out-sine);
 }
 
 // Breakpoints 
